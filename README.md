@@ -51,6 +51,4 @@ java -version
    ```
 
 ## Contributors
-L0125066 - Satrio Ananda Widiyanto 
-L0125103 - Ikhsan Raditya Purnawarman 
-L0125123 - Reditya Aflah Fadhali 
+L0125066 - Satrio Ananda Widiyanto </br>L0125103 - Ikhsan Raditya Purnawarman</br>L0125123 - Reditya Aflah Fadhali 
