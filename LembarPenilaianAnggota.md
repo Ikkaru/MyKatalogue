@@ -16,9 +16,8 @@ Kelompok     : 4
                     paket makanan, mengelola input Scanner, 
                     dan melakukan debugging program]
 
-3. Nama Anggota 3 : [Nama Lengkap]
-   NIM            : [NIM]
-   Kontribusi     : [Contoh: Membuat video demo aplikasi, 
-                    menyusun test cases pengujian rute, 
-                    dan mengimplementasikan struktur antrean]
+3. Nama Anggota 3 : Reditya Aflah Fadhali
+   NIM            : L0125123
+   Kontribusi     : Membuat dan bertanggungjawab terhadap mekanisme JsonStorage.java, membantu menjelaskan method pada
+                    Main.java yaitu cariKategori, cariKataKunci, kelolaKataKunci dan displayProductList, serta editing video live demo.
 ===========================================================
