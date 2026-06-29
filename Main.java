@@ -3,14 +3,22 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Main {
+    // HashSet untuk menyimpan kata kunci terlarang (Kecepatan cek kata = O(1))
     private static final WordFilter wordFilter = new WordFilter();
+    // HashMap untuk indeks pencarian agar cari barang langsung ketemu cepat
     private static final ProductManager productManager = new ProductManager(wordFilter, "products.json");
     private static final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Menu Utama Program (CLI).
+     * Kompleksitas: Tergantung berapa kali user memilih menu (Event Loop).
+     */
     public static void main(String[] args) {
+        // Ambil data produk yang sudah tersimpan di file JSON saat program dibuka
         productManager.loadFromDisk();
 
         boolean running = true;
+        // Loop 'while' ini menjaga agar program terus berjalan sampai user memilih menu 6
         while (running) {
             printHeader("PRODUCT SUMMARY MANAGER");
             System.out.println("1. Tambah Produk Baru");
@@ -52,12 +60,20 @@ public class Main {
         }
     }
 
+    /**
+     * Menampilkan dekorasi judul menu.
+     * Kompleksitas: O(1) karena hanya cetak teks biasa.
+     */
     private static void printHeader(String title) {
         System.out.println("\n=======================================================================");
         System.out.println("                     " + title);
         System.out.println("=======================================================================");
     }
 
+    /**
+     * Menginput produk baru, cek sensor kata, lalu simpan ke memori & JSON.
+     * Kompleksitas: O(N) karena harus menulis ulang semua data ke file JSON.
+     */
     private static void tambahProduk() {
         printHeader("TAMBAH PRODUK BARU");
         
@@ -67,6 +83,7 @@ public class Main {
         System.out.print("Kategori   : ");
         String category = scanner.nextLine().trim();
         
+        // Loop input harga agar aman dari input huruf/minus (Validasi Input)
         double price = 0;
         while (true) {
             System.out.print("Harga (Rp) : ");
@@ -79,6 +96,7 @@ public class Main {
             }
         }
 
+        // Loop input rating agar aman dari input ngawur (Validasi Input)
         double rating = 0;
         while (true) {
             System.out.print("Rating(0-5): ");
@@ -97,30 +115,37 @@ public class Main {
         System.out.print("Deskripsi  : ");
         String description = scanner.nextLine().trim();
 
+        // Cek apakah ada inputan yang kosong atau cuma spasi doang
         if (name.isEmpty() || category.isEmpty() || summary.isEmpty() || description.isEmpty()) {
-            System.out.println("\n[ERROR] Semua field harus diisi!");
+            System.out.println("\n[ERROR] Semua field harus diisi dan tidak boleh hanya berisi spasi!");
             return;
         }
 
-        // Cek apakah ada kata terlarang pada input
+        // Proses Sensor: Cek apakah inputan mengandung kata terlarang (pakai HashSet & Regex)
         boolean hasForbidden = wordFilter.containsForbiddenWord(name) ||
                                wordFilter.containsForbiddenWord(summary) ||
                                wordFilter.containsForbiddenWord(description);
 
-        // Jika terdeteksi kata terlarang, batalkan proses dan kembali ke menu
+        // Jika terbukti ada kata palsu/kw/scam, penambahan langsung ditolak
         if (hasForbidden) {
             System.out.println("\n[ERROR] Penambahan produk dibatalkan! Sistem mendeteksi adanya kata kunci spam/terlarang.");
             return; 
         }
 
+        // Buat objek produk baru dan masukkan ke dalam sistem
         Product p = new Product(name, category, price, rating, summary, description);
-        productManager.addProduct(p); // Simpan produk ke memory dan JSON
+        productManager.addProduct(p); 
 
         System.out.println("\n[SUCCESS] Produk berhasil ditambahkan dan disimpan ke JSON!");
         System.out.println(p);
     }
 
+    /**
+     * Menu pilihan untuk mengurutkan katalog menggunakan Merge Sort.
+     * Kompleksitas: O(N log N) karena kecepatan utama didominasi algoritma Merge Sort.
+     */
     private static void lihatKatalog() {
+        // Ambil semua daftar produk
         List<Product> products = productManager.getAllProducts();
         if (products.isEmpty()) {
             System.out.println("\nKatalog produk masih kosong.");
@@ -136,6 +161,7 @@ public class Main {
         System.out.print("Pilih opsi (1-4): ");
         String sortOption = scanner.nextLine().trim();
 
+        // Panggil SortingHelper berdasarkan menu urutan yang dipilih user
         switch (sortOption) {
             case "1":
                 SortingHelper.mergeSort(products, SortingHelper.BY_RATING_DESC);
@@ -156,6 +182,10 @@ public class Main {
             default:
                 System.out.println("\n[ERROR] Opsi tidak valid. Menampilkan tanpa pengurutan.");
         }
+
+        // Tampilkan hasil tabel produk ke layar
+        displayProductList(products);
+    }
 
         displayProductList(products);
     }
