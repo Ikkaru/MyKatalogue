@@ -1,6 +1,5 @@
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WordFilter {
@@ -21,6 +20,7 @@ public class WordFilter {
 
     // Add ForbiddenWord Method
     public synchronized void addForbiddenWord(String word) {
+        // Cek Apakah word tersebut ada isinya
         if (word != null && !word.trim().isEmpty()) {
             forbiddenWords.add(word.trim().toLowerCase());
             updatePattern();
@@ -29,13 +29,14 @@ public class WordFilter {
 
     // Remove Forbidden Word Method
     public synchronized void removeForbiddenWord(String word) {
+        // Cek Apakah word tersebut ada isinya
         if (word != null) {
             forbiddenWords.remove(word.trim().toLowerCase());
             updatePattern();
         }
     }
 
-    // Get the forbidden Word
+    // Method untuk mengambil semua forbiddenWords
     public synchronized Set<String> getForbiddenWords() {
         return new HashSet<>(forbiddenWords);
     }
@@ -60,25 +61,8 @@ public class WordFilter {
         }
         sb.append(")\\b");
 
+        // Compile String tersebut menjadi Pattern dengan Flag Case Insensitive
         compiledPattern = Pattern.compile(sb.toString(), Pattern.CASE_INSENSITIVE);
-    }
-
-    // Censor Forbidden Word Method
-    public synchronized String censorText(String text) {
-        if (text == null || text.isEmpty() || compiledPattern == null) {
-            return text;
-        }
-
-        Matcher matcher = compiledPattern.matcher(text);
-        StringBuffer sb = new StringBuffer();
-        while (matcher.find()) {
-            String match = matcher.group();
-            String censored = repeatChar('*', match.length());
-            // Matcher.quoteReplacement is important to avoid regex syntax errors in the replacement string
-            matcher.appendReplacement(sb, Matcher.quoteReplacement(censored));
-        }
-        matcher.appendTail(sb);
-        return sb.toString();
     }
 
     // Method for checking is the word Contains a forbidden Word
@@ -86,16 +70,7 @@ public class WordFilter {
         if (text == null || text.isEmpty() || compiledPattern == null) {
             return false;
         }
+        // Jika Ada kata yang match akan mereturn 1 dan jika tidak return 0
         return compiledPattern.matcher(text).find();
-    }
-
-
-    // Helper Method to change character on spesific length
-    private String repeatChar(char c, int count) {
-        StringBuilder sb = new StringBuilder(count);
-        for (int i = 0; i < count; i++) {
-            sb.append(c);
-        }
-        return sb.toString();
     }
 }

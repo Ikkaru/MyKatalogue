@@ -102,22 +102,22 @@ public class Main {
             return;
         }
 
-        // Check if input contained forbidden keywords before adding (for reporting)
+        // Cek apakah ada kata terlarang pada input
         boolean hasForbidden = wordFilter.containsForbiddenWord(name) ||
                                wordFilter.containsForbiddenWord(summary) ||
                                wordFilter.containsForbiddenWord(description);
 
+        // Jika terdeteksi kata terlarang, batalkan proses dan kembali ke menu
+        if (hasForbidden) {
+            System.out.println("\n[ERROR] Penambahan produk dibatalkan! Sistem mendeteksi adanya kata kunci spam/terlarang.");
+            return; 
+        }
+
         Product p = new Product(name, category, price, rating, summary, description);
-        productManager.addProduct(p); // This adds in memory, censors fields, and saves to JSON
+        productManager.addProduct(p); // Simpan produk ke memory dan JSON
 
         System.out.println("\n[SUCCESS] Produk berhasil ditambahkan dan disimpan ke JSON!");
-        if (hasForbidden) {
-            System.out.println("[INFO] Sistem mendeteksi adanya kata kunci spam/terlarang!");
-            System.out.println("[INFO] Deskripsi dan Ringkasan telah disensor otomatis:");
-            System.out.println(p);
-        } else {
-            System.out.println(p);
-        }
+        System.out.println(p);
     }
 
     private static void lihatKatalog() {
