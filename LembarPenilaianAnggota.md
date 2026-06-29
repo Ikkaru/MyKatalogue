@@ -12,9 +12,7 @@ Kelompok     : 4
    NIM            : L0125066
    Kontribusi     : Membuat Sorting Helper, Membuat alur navigasi (Main.java), mengelola validasi input harga dan rating pengguna serta menyesuaikan beberapa kode program.
 
-3. Nama Anggota 3 : Reditya Aflah Fadhali 
+3. Nama Anggota 3 : Reditya Aflah Fadhali
    NIM            : L0125123
-   Kontribusi     : [Contoh: Membuat video demo aplikasi, 
-                    menyusun test cases pengujian rute, 
-                    dan mengimplementasikan struktur antrean]
-===========================================================
+   Kontribusi     : Membuat dan bertanggungjawab terhadap mekanisme JsonStorage.java, membantu menjelaskan method pada
+                    Main.java yaitu cariKategori, cariKataKunci, kelolaKataKunci dan displayProductList, serta editing video live demo.
