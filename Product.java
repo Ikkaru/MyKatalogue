@@ -20,19 +20,9 @@ public class Product {
         return name;
     }
 
-    // Method untuk set nama
-    public void setName(String name) {
-        this.name = name;
-    }
-
     // Menthod untuk mengambil kategori
     public String getCategory() {
         return category;
-    }
-
-    // Method untuk set kategori
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     // Method untuk Mengambil harga
@@ -40,19 +30,9 @@ public class Product {
         return price;
     }
 
-    // Method untuk set harga
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     // Method untuk mengambil rating 
     public double getRating() {
         return rating;
-    }
-
-    // Method untuk set rating
-    public void setRating(double rating) {
-        this.rating = rating;
     }
 
     // Method untuk mengambil summary
@@ -60,22 +40,10 @@ public class Product {
         return summary;
     }
 
-    // Method untuk set summary
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-
     // Method untuk mengambil deskripsi
     public String getDescription() {
         return description;
     }
-
-    // Method untuk set deskripsi
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
 
     // Method untuk format string 
     @Override

@@ -2,17 +2,17 @@
   {
     "name": "Laptop ROG Zephyrus G14",
     "category": "Komputer",
-    "price": 2.8E7,
+    "price": 2.8E8,
     "rating": 4.9,
     "summary": "Laptop gaming gahar dengan AMD Ryzen 9 dan RTX 4060",
     "description": "Kondisi baru gres bergaransi resmi ASUS Indonesia."
   },
   {
-    "name": "Mouse Logitech G14",
+    "name": "Keyboard Rexus A178",
     "category": "Elektronik",
     "price": 500000.0,
     "rating": 4.5,
-    "summary": "Mouse Logitech dengan model yang ramping dan berat yang ringan cocok untuk gaming dan kebutuhan harian",
-    "description": "Mouse Ini Di desain untuk gaming dengan Sensor High End yang mumpuni untuk game kompetitif dengan tambahan lampu RGB membuat mouse ini semakin bagus desainnya"
+    "summary": "Keyboard Rexus A178 Gaming Keybaord Type C",
+    "description": "Keyboard Rexus A178 Gaming Keybaord Type C Dirancang Khusus untuk gaming dengan hall effect dan latency seminim mungkin"
   }
 ]
